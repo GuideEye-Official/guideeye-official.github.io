@@ -7,7 +7,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        :root {
+            --primary-be: #D4A574;
+            --primary-brown: #8B6F47;
+            --dark-brown: #6B5B4C;
+            --darker-brown: #5A4A3A;
+            --accent-be: #E8C4A0;
+            --bg-light: #E8DCC4;
+            --bg-medium: #D4C4B0;
+            --text-dark: #2A2420;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #E8DCC4 0%, #D4C4B0 100%);
+            color: #2A2420;
+        }
         
         /* Dynamic Animations */
         @keyframes float {
@@ -24,27 +39,144 @@
             50% { opacity: 0.6; transform: scale(1.08); }
         }
 
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-scan { animation: scan 2.8s ease-in-out infinite; }
         .animate-glow { animation: pulse-glow 5s ease-in-out infinite; }
+        .animate-shimmer { animation: shimmer 2s infinite; }
+
+        /* Gradient Text */
+        .gradient-text-warm {
+            background: linear-gradient(135deg, #8B6F47 0%, #D4A574 50%, #C4956F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom Border Colors */
+        .border-warm { border-color: rgba(139, 111, 71, 0.3); }
+        .border-warm-light { border-color: rgba(212, 165, 116, 0.2); }
+        .bg-warm-subtle { background-color: rgba(212, 165, 116, 0.08); }
+        .bg-warm-dark { background-color: rgba(139, 111, 71, 0.1); }
+        .text-warm { color: #D4A574; }
+        .text-warm-light { color: #E8C4A0; }
+        .text-dark { color: #2A2420; }
+
+        /* Glow Effects */
+        .glow-warm {
+            box-shadow: 0 0 30px rgba(212, 165, 116, 0.2);
+        }
+
+        .hover-glow-warm:hover {
+            box-shadow: 0 0 40px rgba(212, 165, 116, 0.3);
+        }
+
+        /* Button Styles */
+        .btn-primary-warm {
+            background: linear-gradient(135deg, #D4A574 0%, #C4956F 100%);
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary-warm:hover {
+            background: linear-gradient(135deg, #8B6F47 0%, #A0825E 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 111, 71, 0.3);
+        }
+
+        .btn-secondary-warm {
+            border: 2px solid #8B6F47;
+            color: #8B6F47;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-secondary-warm:hover {
+            background: rgba(139, 111, 71, 0.1);
+            border-color: #D4A574;
+            color: #D4A574;
+        }
+
+        /* Cards */
+        .card-warm {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card-warm:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: #D4A574;
+            box-shadow: 0 8px 20px rgba(212, 165, 116, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav-bg {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        /* Selection */
+        ::selection {
+            background: #D4A574;
+            color: #FFFFFF;
+        }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Text Colors for Light Background */
+        .text-on-light { color: #2A2420; }
+        .text-secondary { color: #5A4A3A; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+<body class="text-on-light min-h-screen flex flex-col justify-between overflow-x-hidden">
 
     <!-- Background Ambient Glow -->
-    <div class="fixed top-20 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none animate-glow"></div>
+    <div class="fixed top-20 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-b from-amber-900/10 to-transparent rounded-full blur-[120px] pointer-events-none animate-glow opacity-60"></div>
+    
+    <div class="fixed bottom-40 right-20 w-[500px] h-[500px] bg-gradient-to-tl from-orange-800/10 to-transparent rounded-full blur-[150px] pointer-events-none opacity-40"></div>
 
     <!-- Navigation -->
-    <nav class="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-md fixed w-full z-50">
+    <nav class="nav-bg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 bg-gradient-to-tr from-indigo-600 to-violet-500 rounded-xl flex items-center justify-center font-extrabold text-white shadow-lg shadow-indigo-500/30">VG</div>
-                <span class="text-xl font-bold tracking-tight text-white">Visual Guard</span>
-                <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">Open Source</span>
+                <!-- Logo SVG -->
+                <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+                    <!-- WiFi waves -->
+                    <path d="M50 10 Q65 25 75 35" stroke="#2A2420" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <path d="M50 20 Q62 32 70 42" stroke="#2A2420" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <path d="M50 30 Q60 40 65 50" stroke="#2A2420" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Eye -->
+                    <ellipse cx="50" cy="60" rx="20" ry="18" fill="none" stroke="#2A2420" stroke-width="3"/>
+                    <circle cx="40" cy="60" r="4" fill="#2A2420"/>
+                    <circle cx="60" cy="60" r="4" fill="#2A2420"/>
+                    
+                    <!-- Camera aperture in eye -->
+                    <circle cx="50" cy="60" r="12" fill="none" stroke="#2A2420" stroke-width="2.5"/>
+                    <path d="M50 48 L58 65 L42 65 Z" fill="none" stroke="#2A2420" stroke-width="2"/>
+                    <path d="M50 72 L42 55 L58 55 Z" fill="none" stroke="#2A2420" stroke-width="2"/>
+                    <path d="M38 60 L55 68 L47 48 Z" fill="none" stroke="#2A2420" stroke-width="2"/>
+                    <path d="M62 60 L45 52 L53 72 Z" fill="none" stroke="#2A2420" stroke-width="2"/>
+                </svg>
+                
+                <div>
+                    <span class="text-lg font-bold tracking-tight text-on-light block">Visual Guard</span>
+                    <span class="text-xs text-secondary font-medium">Spatial AI for Vision</span>
+                </div>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-warm-subtle border border-warm text-warm font-medium ml-2">Open Source</span>
             </div>
-            <a href="https://github.com/GuideEye-Official/visual-guard-android" target="_blank" class="text-sm font-semibold text-slate-200 hover:text-white transition-all bg-slate-800/90 hover:bg-slate-700 px-4 py-2 rounded-lg border border-slate-700/80 shadow-sm flex items-center gap-2">
+            <a href="https://github.com/GuideEye-Official/visual-guard-android" target="_blank" class="text-sm font-semibold text-on-light hover:text-warm transition-all bg-white hover:bg-yellow-50 px-4 py-2 rounded-lg border border-warm-light shadow-sm flex items-center gap-2">
                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                GitHub Repository
+                GitHub
             </a>
         </div>
     </nav>
@@ -55,42 +187,42 @@
             
             <!-- Left Column: Copywriting -->
             <div class="lg:col-span-7 text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6">
-                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-ping"></span>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-warm-subtle border border-warm text-warm text-xs font-semibold uppercase tracking-wider mb-6">
+                    <span class="w-2 h-2 rounded-full bg-warm animate-pulse"></span>
                     Claude 3.5 Sonnet Vision Engine Integrated
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.15]">
-                    Real-Time Spatial AI for the <span class="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">Visually Impaired</span>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-on-light mb-6 leading-[1.1]">
+                    Real-Time Spatial AI for the <span class="gradient-text-warm">Visually Impaired</span>
                 </h1>
 
-                <p class="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed max-w-2xl">
-                    <strong class="text-white font-semibold">Visual Guard</strong> is an open-source native Android accessibility engine converting live camera feeds into sub-second audio navigation, indoor hazard detection, and instant document OCR.
+                <p class="text-lg sm:text-xl text-secondary mb-8 leading-relaxed max-w-2xl">
+                    <strong class="text-on-light font-semibold">Visual Guard</strong> is an open-source native Android accessibility engine converting live camera feeds into sub-second audio navigation, indoor hazard detection, and instant document OCR. Built on trust, powered by AI.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                    <a href="https://github.com/GuideEye-Official/visual-guard-android" target="_blank" class="px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 group">
+                    <a href="https://github.com/GuideEye-Official/visual-guard-android" target="_blank" class="px-7 py-3.5 rounded-xl btn-primary-warm transition-all shadow-lg flex items-center justify-center gap-2 group">
                         Explore Android App Code
                         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
-                    <a href="mailto:long@guideeye.world" class="px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold transition-all flex items-center justify-center">
+                    <a href="mailto:long@guideeye.world" class="px-7 py-3.5 rounded-xl btn-secondary-warm transition-all flex items-center justify-center">
                         Contact Founder
                     </a>
                 </div>
 
                 <!-- Live Metrics Badge -->
-                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80">
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-warm-light">
                     <div>
-                        <div class="text-2xl font-bold text-white">&lt; 800ms</div>
-                        <div class="text-xs text-slate-400 mt-1">Vision Inference Latency</div>
+                        <div class="text-2xl font-bold gradient-text-warm">&lt; 800ms</div>
+                        <div class="text-xs text-secondary mt-1">Vision Inference Latency</div>
                     </div>
                     <div>
-                        <div class="text-2xl font-bold text-indigo-400">720p 30fps</div>
-                        <div class="text-xs text-slate-400 mt-1">Live Camera Processing</div>
+                        <div class="text-2xl font-bold text-warm">720p 30fps</div>
+                        <div class="text-xs text-secondary mt-1">Live Camera Processing</div>
                     </div>
                     <div>
-                        <div class="text-2xl font-bold text-emerald-400">100%</div>
-                        <div class="text-xs text-slate-400 mt-1">Open Source Android</div>
+                        <div class="text-2xl font-bold text-primary-brown">100%</div>
+                        <div class="text-xs text-secondary mt-1">Open Source Android</div>
                     </div>
                 </div>
             </div>
@@ -100,47 +232,47 @@
                 <div class="relative w-full max-w-[340px] animate-float">
                     
                     <!-- Phone Hardware Frame -->
-                    <div class="relative mx-auto border-8 border-slate-800 bg-slate-900 rounded-[40px] h-[580px] shadow-2xl shadow-indigo-500/20 overflow-hidden ring-1 ring-slate-700">
+                    <div class="relative mx-auto border-8 border-gray-800 bg-gray-900 rounded-[40px] h-[580px] shadow-2xl glow-warm overflow-hidden ring-1 ring-gray-700">
                         
                         <!-- Camera Notch -->
-                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-slate-800 rounded-b-xl z-30"></div>
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-gray-800 rounded-b-xl z-30"></div>
 
                         <!-- Live Scanner Screen -->
                         <div class="relative w-full h-full bg-slate-950 p-4 flex flex-col justify-between pt-8">
                             
                             <!-- Laser Scanning Line -->
-                            <div class="absolute left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-400 to-transparent shadow-[0_0_15px_#818cf8] z-20 animate-scan"></div>
+                            <div class="absolute left-0 w-full h-1 bg-gradient-to-r from-transparent via-warm to-transparent shadow-[0_0_15px_rgba(212,165,116,0.8)] z-20 animate-scan"></div>
 
                             <!-- Screen Header HUD -->
-                            <div class="flex justify-between items-center z-10 bg-slate-900/80 backdrop-blur p-2.5 rounded-xl border border-slate-800 text-xs">
+                            <div class="flex justify-between items-center z-10 bg-slate-900/80 backdrop-blur p-2.5 rounded-xl border border-warm-light text-xs">
                                 <div class="flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
                                     <span class="font-mono text-slate-300">CLAUDE_VISION_LIVE</span>
                                 </div>
-                                <span class="font-mono text-indigo-400 font-semibold">30 FPS</span>
+                                <span class="font-mono text-warm font-semibold">30 FPS</span>
                             </div>
 
                             <!-- Simulated Real-time Vision Detection Viewport -->
-                            <div class="my-auto relative h-64 border border-dashed border-indigo-500/40 rounded-2xl bg-indigo-950/20 p-3 flex flex-col justify-center items-center text-center">
+                            <div class="my-auto relative h-64 border border-dashed border-warm opacity-40 rounded-2xl bg-gradient-to-b from-amber-900/20 to-transparent p-3 flex flex-col justify-center items-center text-center">
                                 
                                 <!-- Detection Bounding Box Overlay -->
-                                <div class="absolute top-6 left-6 border-2 border-amber-400/80 bg-amber-400/10 rounded-lg p-1.5 text-[10px] text-amber-300 font-mono shadow-sm">
+                                <div class="absolute top-6 left-6 border-2 border-amber-500/80 bg-amber-500/10 rounded-lg p-1.5 text-[10px] text-amber-300 font-mono shadow-sm">
                                     ⚠️ Staircase Hazard (1.2m)
                                 </div>
 
-                                <div class="absolute bottom-8 right-6 border-2 border-indigo-400/80 bg-indigo-400/10 rounded-lg p-1.5 text-[10px] text-indigo-300 font-mono shadow-sm">
+                                <div class="absolute bottom-8 right-6 border-2 border-warm/80 bg-warm-subtle rounded-lg p-1.5 text-[10px] text-warm font-mono shadow-sm">
                                     🚪 Doorway Entrance
                                 </div>
 
-                                <svg class="w-12 h-12 text-indigo-400/40 mb-2 stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                <svg class="w-12 h-12 text-warm/40 mb-2 stroke-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                 <span class="text-xs text-slate-400 font-mono">Analyzing Spatial Geometry...</span>
                             </div>
 
                             <!-- Audio Navigation Feedback HUD -->
-                            <div class="z-10 bg-indigo-900/40 border border-indigo-500/30 p-3 rounded-xl backdrop-blur">
-                                <div class="text-[10px] uppercase font-bold text-indigo-300 tracking-wider mb-1 flex items-center justify-between">
+                            <div class="z-10 bg-gradient-to-r from-amber-900/40 to-orange-900/30 border border-warm/40 p-3 rounded-xl backdrop-blur">
+                                <div class="text-[10px] uppercase font-bold text-warm tracking-wider mb-1 flex items-center justify-between">
                                     <span>Voice Guidance Output</span>
-                                    <span class="text-emerald-400">TTS Active</span>
+                                    <span class="text-amber-400">TTS Active</span>
                                 </div>
                                 <p class="text-xs text-slate-100 font-medium">"Caution: 3 steps descending in 1.2 meters. Keep slightly right."</p>
                             </div>
@@ -149,10 +281,191 @@
                     </div>
 
                     <!-- Floating Badge Left -->
-                    <div class="absolute -left-6 top-1/3 bg-slate-900/90 border border-slate-700/80 backdrop-blur p-3 rounded-xl shadow-xl text-xs z-30">
-                        <div class="text-slate-400 text-[10px]">Model</div>
-                        <div class="font-bold text-indigo-400">Claude 3.5 Sonnet</div>
+                    <div class="absolute -left-6 top-1/3 bg-white border border-warm-light backdrop-blur p-3 rounded-xl shadow-xl text-xs z-30">
+                        <div class="text-secondary text-[10px]">Model</div>
+                        <div class="font-bold text-warm">Claude 3.5 Sonnet</div>
                     </div>
 
                     <!-- Floating Badge Right -->
-                    <div class="absolute -right-6 bottom-1/4 bg-slate-900/90 border border-slate-700/80
+                    <div class="absolute -right-6 bottom-1/4 bg-white border border-warm-light backdrop-blur p-3 rounded-xl shadow-xl text-xs z-30">
+                        <div class="text-secondary text-[10px]">Output Latency</div>
+                        <div class="font-bold text-primary-brown">740 ms</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Architecture & Features Grid -->
+        <div class="mt-28">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-3xl sm:text-4xl font-bold text-on-light mb-3">Engineered for Ultra-Low Latency</h2>
+                <p class="text-secondary text-base">How Visual Guard processes environmental data to keep users safe in real time.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Feature 1: Camera Pipeline -->
+                <div class="card-warm p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-200/60 to-orange-200/40 border border-warm/40 flex items-center justify-center text-primary-brown mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-on-light mb-2">Android CameraX Pipeline</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Captures optimized 720p camera frames and streams memory-efficient compressed payloads directly to the backend.</p>
+                </div>
+
+                <!-- Feature 2: Vision Parsing -->
+                <div class="card-warm p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-200/60 to-orange-200/40 border border-warm/40 flex items-center justify-center text-primary-brown mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-on-light mb-2">Claude Vision Parsing</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Extracts spatial depth, obstacle coordinates, signs, and hazards into structured JSON responses via Claude 3.5 Sonnet.</p>
+                </div>
+
+                <!-- Feature 3: Audio Output -->
+                <div class="card-warm p-6 rounded-2xl">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-200/60 to-orange-200/40 border border-warm/40 flex items-center justify-center text-primary-brown mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-on-light mb-2">Native TTS Audio Cue</h3>
+                    <p class="text-sm text-secondary leading-relaxed">Converts structural JSON into natural, low-latency spoken instructions integrated directly with Android TalkBack.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Features Section -->
+        <div class="mt-20 grid md:grid-cols-2 gap-8">
+            <div class="card-warm p-8 rounded-2xl">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-300/60 to-orange-300/40 border border-warm/30 flex items-center justify-center flex-shrink-0 text-primary-brown">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-on-light mb-2">Obstacle Detection</h3>
+                        <p class="text-sm text-secondary">Identifies stairs, doorways, furniture, and hazards with precise spatial mapping and distance estimation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-warm p-8 rounded-2xl">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-300/60 to-orange-300/40 border border-warm/30 flex items-center justify-center flex-shrink-0 text-primary-brown">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-on-light mb-2">Instant Text Recognition</h3>
+                        <p class="text-sm text-secondary">Recognizes and reads signs, menus, documents, and labels up to 500 characters with 99% OCR accuracy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-warm p-8 rounded-2xl">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-300/60 to-orange-300/40 border border-warm/30 flex items-center justify-center flex-shrink-0 text-primary-brown">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-on-light mb-2">Voice-Controlled Navigation</h3>
+                        <p class="text-sm text-secondary">Control via gestures and voice commands. Call contacts, send messages, and request information hands-free.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-warm p-8 rounded-2xl">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-300/60 to-orange-300/40 border border-warm/30 flex items-center justify-center flex-shrink-0 text-primary-brown">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-on-light mb-2">Real-Time Processing</h3>
+                        <p class="text-sm text-secondary">Sub-800ms latency ensures instant feedback. All processing happens on your device for maximum privacy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand Story Section -->
+        <div class="mt-28 rounded-3xl card-warm p-12 border-2 border-warm/60">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-on-light mb-6">Visual Support Initiative</h2>
+                    <p class="text-lg text-secondary mb-4 leading-relaxed">
+                        <strong class="text-on-light">Visual Guard</strong> is part of the larger Visual Support initiative, dedicated to <strong>empowering sight and assistance</strong> for the visually impaired community.
+                    </p>
+                    <p class="text-base text-secondary leading-relaxed">
+                        With over 285 million people globally living with vision impairment, our mission is to transform smartphones into intelligent navigation companions. We believe accessibility should be <strong>affordable, private, and empowering</strong>.
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <!-- Large Logo Display -->
+                    <svg width="280" height="280" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-lg">
+                        <!-- WiFi waves -->
+                        <path d="M100 30 Q130 60 150 90" stroke="#8B6F47" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        <path d="M100 50 Q124 80 140 110" stroke="#8B6F47" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        <path d="M100 70 Q118 100 130 130" stroke="#8B6F47" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        
+                        <!-- Eye -->
+                        <ellipse cx="100" cy="160" rx="40" ry="36" fill="none" stroke="#2A2420" stroke-width="6"/>
+                        <circle cx="80" cy="160" r="8" fill="#2A2420"/>
+                        <circle cx="120" cy="160" r="8" fill="#2A2420"/>
+                        
+                        <!-- Camera aperture in eye -->
+                        <circle cx="100" cy="160" r="24" fill="none" stroke="#8B6F47" stroke-width="4"/>
+                        <path d="M100 136 L116 175 L84 175 Z" fill="none" stroke="#8B6F47" stroke-width="3.5"/>
+                        <path d="M100 184 L84 145 L116 145 Z" fill="none" stroke="#8B6F47" stroke-width="3.5"/>
+                        <path d="M76 160 L110 180 L94 136 Z" fill="none" stroke="#8B6F47" stroke-width="3.5"/>
+                        <path d="M124 160 L90 140 L106 184 Z" fill="none" stroke="#8B6F47" stroke-width="3.5"/>
+                        
+                        <!-- Text -->
+                        <text x="100" y="230" font-family="Inter, sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#2A2420">VISUAL SUPPORT</text>
+                        <text x="100" y="258" font-family="Inter, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="#5A4A3A">Empowering Sight & Assistance</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="mt-24 text-center rounded-2xl p-12 card-warm border-2 border-warm/60">
+            <h2 class="text-3xl font-bold text-on-light mb-4">Ready to Explore Visual Guard?</h2>
+            <p class="text-secondary mb-8 max-w-xl mx-auto text-lg">Join us in revolutionizing accessibility for the visually impaired with open-source AI technology.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://github.com/GuideEye-Official/visual-guard-android" target="_blank" class="px-8 py-3.5 rounded-xl btn-primary-warm transition-all shadow-lg flex items-center justify-center gap-2 group">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                    Explore on GitHub
+                </a>
+                <a href="mailto:long@guideeye.world" class="px-8 py-3.5 rounded-xl btn-secondary-warm transition-all flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-warm-light py-8 text-center text-xs text-secondary bg-white/40">
+        <p>© 2026 Visual Guard. An open-source accessibility initiative developed by GuideEye. Designed with ❤️ for independence and inclusion.</p>
+    </footer>
+
+</body>
+</html>
